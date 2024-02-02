@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: survey-back
+spec:
+  selector:
+    matchLabels:
+      app: survey-back
+  template:
+    metadata:
+      labels:
+        app: survey-back
+      annotations:
+        prometheus.io/scrape: 'true'
+        rometheus.io/port: '8082'
+        prometheus.io/path: "/actuator/prometheus"
+    spec:
+      imagePullSecrets:
+        - name: docker-pull-secret
+      containers:
+        - name: survey-back
+          image: hamgeonwook/survey-back:91
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: spring
+            - containerPort: 8082
+              name: spring-actuator
+        - name: redis-container
+          image: redis:latest
+          ports:
+            - containerPort: 6379
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: survey-back-service
+  labels:
+    app: survey-back-service
+spec:
+  ports:
+    - name: spring
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+    - name: spring-actuator
+      port: 8082 # service의 port
+      targetPort: 8082 # pod의 target port
+      protocol: TCP
+  selector:
+    app: survey-back

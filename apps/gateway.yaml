@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-back
+spec:
+  selector:
+    matchLabels:
+      app: gateway-back
+  template:
+    metadata:
+      labels:
+        app: gateway-back
+      annotations:
+        prometheus.io/scrape: 'true'
+        rometheus.io/port: '8082'
+        prometheus.io/path: "/actuator/prometheus"
+    spec:
+      imagePullSecrets:
+        - name: docker-pull-secret
+      containers:
+        - name: gateway-back
+          image: hamgeonwook/gateway:90
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: spring
+            - containerPort: 8082
+              name: spring-actuator
+          resources:
+            requests:
+              cpu: 100m
+            limits:
+              cpu: 100m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-service
+  labels:
+    app: gateway-service
+spec:
+  type: LoadBalancer
+  ports:
+    - name: spring
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+    - name: spring-actuator
+      port: 8082 # service의 port
+      targetPort: 8082 # pod의 target port
+      protocol: TCP
+  selector:
+    app: gateway-back

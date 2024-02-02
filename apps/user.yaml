@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-back
+spec:
+  selector:
+    matchLabels:
+      app: user-back
+  template:
+    metadata:
+      labels:
+        app: user-back
+      annotations:
+        prometheus.io/scrape: 'true'
+        rometheus.io/port: '8082'
+        prometheus.io/path: "/actuator/prometheus"
+    spec:
+      imagePullSecrets:
+        - name: docker-pull-secret
+      containers:
+        - name: user-back
+          image: hamgeonwook/user-back:91
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: spring
+            - containerPort: 8082
+              name: spring-actuator
+        - name: redis-container
+          image: redis:latest
+          ports:
+            - containerPort: 6379
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-back-service
+  labels:
+    app: user-back-service
+spec:
+  ports:
+    - name: spring
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+    - name: spring-actuator
+      port: 8082 # service의 port
+      targetPort: 8082 # pod의 target port
+      protocol: TCP
+  selector:
+    app: user-back
