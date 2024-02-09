@@ -19,7 +19,7 @@ spec:
         - name: docker-pull-secret
       containers:
         - name: response-back
-          image: hamgeonwook/response-back:19
+          image: hamgeonwook/response-back:20
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

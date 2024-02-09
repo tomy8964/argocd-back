@@ -19,7 +19,7 @@ spec:
         - name: docker-pull-secret
       containers:
         - name: survey-back
-          image: hamgeonwook/survey-back:19
+          image: hamgeonwook/survey-back:20
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
