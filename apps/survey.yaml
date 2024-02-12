@@ -24,8 +24,8 @@ spec:
           imagePullPolicy: Always
           resources:
             requests:
-              cpu: 2000m
-              memory: 20000Mi
+              cpu: 1000m
+              memory: 10000Mi
           ports:
             - containerPort: 8080
               name: spring
