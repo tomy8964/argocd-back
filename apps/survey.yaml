@@ -22,6 +22,10 @@ spec:
         - name: survey-back
           image: hamgeonwook/survey-back:21
           imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 100m
+              memory: 1000Mi
           ports:
             - containerPort: 8080
               name: spring
