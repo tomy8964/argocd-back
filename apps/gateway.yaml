@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: gateway-back
 spec:
-  replicas: 3
+  replicas: 10
   selector:
     matchLabels:
       app: gateway-back
@@ -29,9 +29,9 @@ spec:
               name: spring-actuator
           resources:
             requests:
-              cpu: 100m
+              cpu: 1000m
             limits:
-              cpu: 100m
+              cpu: 1000m
 ---
 apiVersion: v1
 kind: Service
