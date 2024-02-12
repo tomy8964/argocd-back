@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: survey-back
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: survey-back
