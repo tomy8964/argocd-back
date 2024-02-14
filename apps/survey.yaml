@@ -20,7 +20,7 @@ spec:
         - name: docker-pull-secret
       containers:
         - name: survey-back
-          image: hamgeonwook/survey-back:22
+          image: hamgeonwook/survey-back:26
           imagePullPolicy: Always
           resources:
             requests:
