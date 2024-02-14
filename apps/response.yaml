@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: response-back
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: response-back
@@ -21,6 +22,11 @@ spec:
         - name: response-back
           image: hamgeonwook/response-back:21
           imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 1000m
+            limits:
+              cpu: 1000m
           ports:
             - containerPort: 8080
               name: spring
