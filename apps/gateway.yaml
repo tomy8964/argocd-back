@@ -29,9 +29,9 @@ spec:
               name: spring-actuator
           resources:
             requests:
-              cpu: 1000m
+              cpu: 500m
             limits:
-              cpu: 1000m
+              cpu: 500m
 ---
 apiVersion: v1
 kind: Service
