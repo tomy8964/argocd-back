@@ -13,7 +13,7 @@ spec:
         app: gateway-back
       annotations:
         prometheus.io/scrape: 'true'
-        rometheus.io/port: '8082'
+        prometheus.io/port: '8082'
         prometheus.io/path: "/actuator/prometheus"
     spec:
       imagePullSecrets:
