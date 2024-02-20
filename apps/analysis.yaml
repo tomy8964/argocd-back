@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: analysis-back
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: analysis-back
