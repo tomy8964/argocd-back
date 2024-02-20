@@ -20,7 +20,7 @@ spec:
         - name: docker-pull-secret
       containers:
         - name: analysis-back
-          image: hamgeonwook/analysis-back:27
+          image: hamgeonwook/analysis-back:28
           imagePullPolicy: Always
           resources:
             requests:
