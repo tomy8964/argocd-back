@@ -20,7 +20,7 @@ spec:
         - name: docker-pull-secret
       containers:
         - name: user-back
-          image: hamgeonwook/user-back:26
+          image: hamgeonwook/user-back:27
           imagePullPolicy: Always
           resources:
             requests:
