@@ -20,7 +20,7 @@ spec:
         - name: docker-pull-secret
       containers:
         - name: gateway-back
-          image: hamgeonwook/gateway:28
+          image: hamgeonwook/gateway:30
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

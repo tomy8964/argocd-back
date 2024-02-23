@@ -20,7 +20,7 @@ spec:
         - name: docker-pull-secret
       containers:
         - name: response-back
-          image: hamgeonwook/response-back:28
+          image: hamgeonwook/response-back:30
           imagePullPolicy: Always
           resources:
             requests:
